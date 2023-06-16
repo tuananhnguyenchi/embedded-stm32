@@ -97,7 +97,7 @@ char rmsg[20];
   /* USER CODE BEGIN 2 */
   Write_To_24lc(&hi2c1,(uint16_t)SLAVE_ADDRESS,(uint16_t)MEMORY_ADDRESS,(uint8_t*)wmsg,strlen(wmsg)+1);
 	// tai sao la strlen(wmsg)+1: vi doi vs char[] ham strlen se bo qua "0\n" nen can cong them 1 de so sanh
-	Read_From_24lc(&hi2c1,(uint16_t)SLAVE_ADDRESS,(uint16_t)MEMORY_ADDRESS,(uint8_t*)rmsg,strlen(rmsg)+1);
+  Read_From_24lc(&hi2c1,(uint16_t)SLAVE_ADDRESS,(uint16_t)MEMORY_ADDRESS,(uint8_t*)rmsg,strlen(rmsg)+1);
   /* USER CODE END 2 */
   if(strcmp(rmsg,wmsg)==0)
 	{
