@@ -97,7 +97,7 @@ char rmsg[20];
   /* USER CODE BEGIN 2 */
   Write_To_24lc(&hi2c1,(uint16_t)SLAVE_ADDRESS,(uint16_t)MEMORY_ADDRESS,(uint8_t*)wmsg,strlen(wmsg)+1);
 	// tai sao la strlen(wmsg)+1: vi doi vs char[] ham strlen se bo qua "0\n" nen can cong them 1 de so sanh
-	Read_From_24lc(&hi2c1,(uint16_t)SLAVE_ADDRESS,(uint16_t)MEMORY_ADDRESS,(uint8_t*)rmsg,strlen(rmsg)+1);
+  Read_From_24lc(&hi2c1,(uint16_t)SLAVE_ADDRESS,(uint16_t)MEMORY_ADDRESS,(uint8_t*)rmsg,strlen(rmsg)+1);
   /* USER CODE END 2 */
   if(strcmp(rmsg,wmsg)==0)
 	{
@@ -189,7 +189,7 @@ HAL_StatusTypeDef Read_From_24lc(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, u
 {
 	HAL_StatusTypeDef returnValue;
 	uint8_t arr[2];
-	// thay dia chi memory 12 bit tuy nhien do moi lan chi gui dc 8 bit nên can phai tach dia chi memory ra truoc khi gui
+	// thay dia chi memory 12 bit tuy nhien do moi lan chi gui dc 8 bit nÃªn can phai tach dia chi memory ra truoc khi gui
 	// VD:0x1AA thi se duoc gui 2 lan + Lan 1: 0x01(hay 0x1)
 	//                                + Lan 2:0xAA
 	arr[0]=(uint8_t)((MemoryAddress&0xFF00)>>8); // 0x01AA&0xff00=0x0100  ; 0x0100>>8=0x0001=0x01
@@ -212,7 +212,7 @@ HAL_StatusTypeDef Write_To_24lc(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, ui
 	HAL_StatusTypeDef returnVlue;
 	uint8_t *data;
 	data=(uint8_t *)malloc(sizeof(uint8_t)*(Size+2)); //them 2 de dung de lua dia chi memory address
-	// thay dia chi memory 12 bit tuy nhien do moi lan chi gui dc 8 bit nên can phai tach dia chi memory ra truoc khi gui
+	// thay dia chi memory 12 bit tuy nhien do moi lan chi gui dc 8 bit nÃªn can phai tach dia chi memory ra truoc khi gui
 	// VD:0x1AA thi se duoc gui 2 lan + Lan 1: 0x01(hay 0x1)
 	//                                + Lan 2:0xAA
 	data[0]=(uint8_t)((MemoryAddress&0xFF00)>>8); // 0x01AA&0xff00=0x0100  ; 0x0100>>8=0x0001=0x01
